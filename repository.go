@@ -5,14 +5,14 @@ type EntityRepository interface {
 	FindAll() ([]*Todo, error)
 }
 
-type inMemoryRepository struct {
+type InMemoryRepository struct {
 }
 
-func (r *inMemoryRepository) Create(text string) (*Todo, error) {
+func (r *InMemoryRepository) Create(text string) (*Todo, error) {
 	return NewTodo(text), nil
 }
 
-func (r *inMemoryRepository) FindAll() ([]*Todo, error) {
+func (r *InMemoryRepository) FindAll() ([]*Todo, error) {
 	return []*Todo{
 		NewTodo("foo"),
 		NewTodo("bar"),
@@ -21,5 +21,5 @@ func (r *inMemoryRepository) FindAll() ([]*Todo, error) {
 }
 
 func NewInMemoryRepository() EntityRepository {
-	return &inMemoryRepository{}
+	return &InMemoryRepository{}
 }
