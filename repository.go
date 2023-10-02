@@ -6,20 +6,21 @@ type EntityRepository interface {
 }
 
 type InMemoryRepository struct {
+	todos []*Todo
 }
 
 func (r *InMemoryRepository) Create(text string) (*Todo, error) {
-	return NewTodo(text), nil
+	t := NewTodo(text)
+	r.todos = append(r.todos, t)
+	return t, nil
 }
 
 func (r *InMemoryRepository) FindAll() ([]*Todo, error) {
-	return []*Todo{
-		NewTodo("foo"),
-		NewTodo("bar"),
-		NewTodo("baz"),
-	}, nil
+	return r.todos, nil
 }
 
 func NewInMemoryRepository() EntityRepository {
-	return &InMemoryRepository{}
+	return &InMemoryRepository{
+		todos: make([]*Todo, 0),
+	}
 }
