@@ -1,7 +1,7 @@
 package main
 
 type Todo struct {
-	Text string
+	Text string `json:"text"`
 }
 
 func NewTodo(text string) *Todo {
