@@ -22,7 +22,7 @@ func (th *TodoHandlers) CreateTodoHandler(w http.ResponseWriter, _ *http.Request
 
 func (th *TodoHandlers) FindAllTodosHandler(w http.ResponseWriter, _ *http.Request) {
 	todo, err := th.er.FindAll()
-	commonHandler(w, http.StatusCreated, todo, err)
+	commonHandler(w, http.StatusOK, todo, err)
 }
 
 func commonHandler(w http.ResponseWriter, status int, data any, err error) {
